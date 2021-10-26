@@ -57,10 +57,72 @@
       50% { transform: scale(1); opacity: 1; }
       100% { transform: scale(.7); opacity: .3; }
     }
+
+    #wip-alert {
+        position: absolute;
+        top: 0;
+        right: 0;
+        left: 0;
+        background: #333;
+        color: white;
+        padding: 1rem;
+        z-index: 1000;
+        display: flex;
+        font-family: "Roboto", sans-serif;
+        justify-content: space-between;
+        align-items: center;
+        text-align: center;
+    }
+
+    #wip-alert button {
+        background: #00a86b;
+        padding: .25rem .5rem;
+        margin-left: .25rem;
+    }
+
+    #wip-alert button:hover {
+        opacity: .9;
+    }
+
+    @media (max-width:960px) {
+        #wip-alert {
+            flex-direction: column;
+        }
+
+        #wip-alert span {
+            margin-bottom: 1rem;
+        }
+    }
   </style>
 </head>
 
 <body loading>
+    <aside id="wip-alert" style="display: none">
+        <span>
+            This app hasn't been updated for a while, so it may not work with some new PODs.
+        </span>
+        <div>
+            <a href="https://github.com/NoelDeMartin/solid-focus/issues/10" target="_blank">Read more about the current status</a>
+            <button onclick="dismissWIPAlert()">OK</button>
+        </div>
+    </aside>
+    <script>
+        var wipAlert = document.getElementById('wip-alert');
+
+        function dismissWIPAlert() {
+            wipAlert.remove();
+            localStorage.setItem('wip-alert-dismissed', 'true');
+        }
+
+        function initWIPAlert() {
+            if (!!localStorage.getItem('wip-alert-dismissed'))
+                return;
+
+            wipAlert.style.display = 'flex';
+        }
+
+        initWIPAlert();
+    </script>
   <noscript>
     <strong>We're sorry but Focus doesn't work properly without JavaScript enabled. Please enable it to continue.</strong>
   </noscript>
