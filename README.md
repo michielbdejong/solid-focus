@@ -5,3 +5,15 @@ Task Manager implemented with [Vue](https://vuejs.org/) using the [Solid](https:
 Use it online here: [https://noeldemartin.github.io/solid-focus](https://noeldemartin.github.io/solid-focus)
 
 To learn more about implementation details and development status [read the docs](docs).
+
+To develop (requires `nvm` and `python2`):
+```
+git clone https://github.com/noeldemartin/solid-focus
+cd solid-focus
+nvm install 10
+nvm use 10
+PYTHON=python2 npm install
+npm run build
+npm test
+npm serve
+```
